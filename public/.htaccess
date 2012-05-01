@@ -1,0 +1,25 @@
+# Enable rewrite engine and route requests to framework
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{HTTP_HOST} ^feudal-online\.com
+RewriteRule ^(.*)$ http://www.feudal-online.com/$1 [R=permanent,L]
+
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !\.(css|gif|ico|jpg|js|png|swf|txt)$
+RewriteRule .* index.php [L,QSA]
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+
+# Disable ETags
+<IfModule mod_header.c>
+	Header Unset ETag
+	FileETag none
+</IfModule>
+
+# Default expires header if none specified (stay in browser cache for 7 days)
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresDefault A604800
+</IfModule>
