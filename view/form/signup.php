@@ -1,6 +1,6 @@
 <form class="content ajax full" method="post" action="/?c=index&m=signup" autocomplete="off">
     <fieldset>
-        <legend><?= _('You can start playing right now for FREE. Create an account and join the Feudal Online world.'); ?></legend>	
+        <legend><?= _('description'); ?></legend>	
         <label class="width1 first field-first">
             <?= _('Username'); ?> (3-16 max)
             <input pattern="<?php echo \model\form\Signup::getRules('username', 'regexp'); ?>" required="required" type="text" class="text" value="" name="username">
